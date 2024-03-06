@@ -67,9 +67,11 @@ let person: Person = {
   name: "Ansh",
   age: 5,
 };
-```
 
-> let name: string
+// Assigning types in TypeScript
+
+let lotsOfPersons: Person[];
+```
 
 ### Other Types in TypeScript:
 
@@ -81,3 +83,73 @@ let person: Person = {
 - tuple
 - undefined
 - null
+
+
+### Assigning types in TypeScript
+
+```tsx
+type Person = {
+    name: string;
+    age: number;
+    sex?: string;   // This property is optional.
+}  
+
+// Assigning types in TypeScript
+let lotsOfPersons: Person[];
+```
+
+### Use of Union to define a variable of more then 1 type:
+
+```tsx
+let contact: string | number;
+
+contact = 3             // working
+contact = "yfguyb"      // working
+```
+
+# Function Types - 2 ways in TypeScript
+
+```tsx
+// Method 1
+function printName(name: string){
+	console.log(name);
+};
+
+// Method 2
+let printName2: Function;
+
+// better way --->
+
+let printName3: (name: string) => void;
+
+// It will take a string type input & will return void (nothing).
+```
+
+# `any` type variable:
+
+> It is not recommended to use in projects.
+
+```tsx
+let degree: any;
+```
+
+# `unknown` type variable:
+
+> When you don't know the type it is going to be, it is recommended to use:
+
+```tsx
+/*	unknown type	*/
+
+let degree1: unknown;
+```
+
+### `void` return undefined
+
+### `never` do NOT return.
+
+```tsx
+
+// never type
+
+let kaka: (name: string) => never;
+```
