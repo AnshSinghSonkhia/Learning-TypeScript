@@ -1,33 +1,44 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+//import { useState } from 'react'
+import './App.css';
+
+let name: string = "Ansh Singh Sonkhia";
+let name2: string;
+
+//name2 = 5;        //This will give error.
+
+name2 = "Heyy Boss ;>"
+let age: number;
+
+let isFruit: boolean;   // It can be TRUE or FALSE
+
+let hobbies: string[];      // Array of string
+let complex: number[];      // Array of number
+
+let role: [number, string];     // Tuple - that can contain 1 number and 1 string.
+
+role = [5, "lamba"];
+
+type Person = {
+    name: string;
+    age: number;
+    sex?: string;   // This property is optional.
+}          
+// It's a good practice to keep the first letter of type ---> Capital
+
+let person: Person = {
+  name: "Ansh",
+  age: 5,
+};
 
 function App() {
-  const [count, setCount] = useState(0)
+//  const [count, setCount] = useState(0)
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className='App'>
+        Helo Worlssssss
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
