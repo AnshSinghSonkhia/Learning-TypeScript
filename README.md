@@ -10,6 +10,10 @@
 
 - TypeScript understands JavaScript and uses type inference to give us great tooling without additional code.
 
+# Documentations:
+
+- [https://www.typescriptlang.org/docs/handbook/2/everyday-types.html](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html)
+
 # Create a React with TypeScript app.
 
 ```shell
@@ -152,4 +156,83 @@ let degree1: unknown;
 // never type
 
 let kaka: (name: string) => never;
+```
+
+# Alias in TypeScript:
+
+1. type
+
+```tsx
+type Person = {
+    name: string;
+    age?: number;
+}
+```
+
+2. interface
+
+```tsx
+interface Personx {
+    name: string;
+    age?: number;
+}
+```
+
+# Inheritance with `interface` in TypeScript
+
+```tsx
+interface Personx {
+  name: string;
+  age?: number;
+}
+
+interface Guy extends Personx {
+  profession: string;
+}
+```
+
+# Inheritance with `types` in TypeScript
+
+```tsx
+type X = {
+  a: string;
+  b?: number;
+};
+
+type Y = X & {
+  c: string;
+  d: number;
+};
+
+// Usage
+
+let useXY: Y = {
+  a: "uydfgj",
+  c:"efdas",
+  d: 42
+}
+```
+
+# `type` & `interface` using each other for inheritance
+
+```tsx
+interface Magic {
+    name: string;
+    value?: number;
+}
+
+type Magician = Magic & {
+    power: string;
+    price: number;
+}
+
+type joker = {
+    from: string;
+    age: number;
+}
+
+interface Jadu extends joker {
+    name: string;
+    value?: number;
+}
 ```

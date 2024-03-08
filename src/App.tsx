@@ -1,112 +1,77 @@
-import React from "react";
-//import { useState } from 'react'
+import React, { useState } from "react";
 import "./App.css";
+import InputField from "./components/InputField";
+import TodoList from "./components/TodoList";
+import { DragDropContext, DropResult } from "react-beautiful-dnd";
+import { Todo } from "./models/models";
 
-let name: string = "Ansh Singh Sonkhia";
-let name2: string;
+const App: React.FC = () => {
+  const [todo, setTodo] = useState<string>("");
+  const [todos, setTodos] = useState<Array<Todo>>([]);
+  const [CompletedTodos, setCompletedTodos] = useState<Array<Todo>>([]);
 
-//name2 = 5;        //This will give error.
+  const handleAdd = (e: React.FormEvent) => {
+    e.preventDefault();
 
-name2 = "Heyy Boss ;>";
-let age: number;
+    if (todo) {
+      setTodos([...todos, { id: Date.now(), todo, isDone: false }]);
+      setTodo("");
+    }
+  };
 
-let isFruit: boolean; // It can be TRUE or FALSE
+  const onDragEnd = (result: DropResult) => {
+    const { destination, source } = result;
 
-let hobbies: string[]; // Array of string
-let complex: number[]; // Array of number
+    console.log(result);
 
-let role: [number, string]; // Tuple - that can contain 1 number and 1 string.
+    if (!destination) {
+      return;
+    }
 
-role = [5, "lamba"];
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
+      return;
+    }
 
-type Person = {
-  name: string;
-  age: number;
-  sex?: string; // This property is optional.
-};
-// It's a good practice to keep the first letter of type ---> Capital
+    let add;
+    let active = todos;
+    let complete = CompletedTodos;
+    // Source Logic
+    if (source.droppableId === "TodosList") {
+      add = active[source.index];
+      active.splice(source.index, 1);
+    } else {
+      add = complete[source.index];
+      complete.splice(source.index, 1);
+    }
 
-let person: Person = {
-  name: "Ansh",
-  age: 5,
-};
+    // Destination Logic
+    if (destination.droppableId === "TodosList") {
+      active.splice(destination.index, 0, add);
+    } else {
+      complete.splice(destination.index, 0, add);
+    }
 
-// Assigning types in TypeScript
-
-let lotsOfPersons: Person[];
-
-// Union
-
-let contact: string | number;
-
-contact = 3; // working
-contact = "yfguyb"; // working
-
-
-/* 
-	Function Types - 2 ways
-*/
-
-
-// Method 1
-function printName(name: string){
-	console.log(name);
-};
-
-// Method 2
-let printName2: Function;
-
-// better way --->
-
-let printName3: (name: string) => void;
-
-// It will take a string type input & will return void (nothing).
-
-let degree: any;	// NOT recommended to use.
-
-// When you don't know the type it is going to be, it is recommended to use:
-
-/*	unknown type	*/
-
-let degree1: unknown;
-
-// it also takes any type
-
-
-// never type
-
-let kaka: (name: string) => never;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function App() {
-  //  const [count, setCount] = useState(0)
+    setCompletedTodos(complete);
+    setTodos(active);
+  };
 
   return (
-    <>
-      <div className="App">Helo Worlssssss</div>
-    </>
+    <DragDropContext onDragEnd={onDragEnd}>
+      <div className="App">
+        <span className="heading">Task hai toh krna hoga</span>
+        <InputField todo={todo} setTodo={setTodo} handleAdd={handleAdd} />
+        <TodoList
+          todos={todos}
+          setTodos={setTodos}
+          CompletedTodos={CompletedTodos}
+          setCompletedTodos={setCompletedTodos}
+        />
+      </div>
+    </DragDropContext>
   );
-}
+};
 
 export default App;
