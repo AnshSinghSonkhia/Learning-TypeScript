@@ -84,7 +84,9 @@
     border-radius: 5px;
     padding: 20px;
     margin-top: 15px;
-    background-image: url("https://img.freepik.com/free-photo/crumpled-yellow-paper-background-close-up_60487-2390.jpg?size=626&ext=jpg");
+    /* background-image: url("https://img.freepik.com/free-photo/crumpled-yellow-paper-background-close-up_60487-2390.jpg?size=626&ext=jpg"); */
+    /* background-image: url("https://img.freepik.com/free-photo/white-paper-texture-background_23-2151025792.jpg?t=st=1709963792~exp=1709967392~hmac=400048e24a994eae8aeb45a69a0801a538ddf18797d7a3b13af739416f785975&w=826"); */
+    background-image: url("https://media.istockphoto.com/id/1288568827/vector/colorful-and-mixed-color-gradient-watercolor-background-illustration.jpg?s=2048x2048&w=is&k=20&c=xTGCMuGodlE314fcBN531oAkPMh7CzH7DQALjenP5Xg=");
     transition: 0.2s;
   }
   
